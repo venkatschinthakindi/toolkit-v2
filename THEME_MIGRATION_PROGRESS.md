@@ -1107,3 +1107,9 @@ pre-existing problems unchanged, zero responsive diff, build clean.
 Rebased cleanly onto a concurrent PDF-client batch (CompressClient,
 ImageToPDFClient, mergePdfClient, splitPdfClient all done by another
 session) with zero conflicts. Commit `20ed2c2`.
+
+## Session 37 — passportPhotoCompressorClient.tsx migrated (51 occurrences)
+
+Standard mapping + 13-token hue pass. Verified: tsc clean, eslint 3
+pre-existing problems unchanged, zero responsive diff, build clean.
+Commit `7b52d8d`.
