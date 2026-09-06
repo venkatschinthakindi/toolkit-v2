@@ -362,7 +362,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-3 py-3 text-white sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
+    <div className="mx-auto w-full max-w-6xl px-3 py-3 text-foreground sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
       <ToolHero
         config={config}
         processing={processing}
@@ -399,14 +399,14 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
       <div className="mt-6 space-y-4 sm:space-y-5">
         {error && (
-          <section className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
+          <section className="rounded-2xl border border-rose-300 dark:border-rose-400/20 bg-rose-100 dark:bg-rose-400/10 px-4 py-3 text-sm text-rose-700 dark:text-rose-100">
             {error}
           </section>
         )}
 
         {showConfigSection && file && (
           <section className={premiumShellClass()}>
-            <div className="border-b border-white/10 px-4 py-3 sm:px-5 sm:py-4">
+            <div className="border-b border-border px-4 py-3 sm:px-5 sm:py-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                   <div className="flex gap-3">
@@ -415,22 +415,22 @@ export default function BackgroundRemoverClient({ config }: Props) {
                       {cutoutUrl ? "Background removed" : "Review your image"}
                     </h2>
                   </div>
-                  <p className="mt-1 text-xs text-white/60 sm:text-sm">
+                  <p className="mt-1 text-xs text-foreground-secondary sm:text-sm">
                     {cutoutUrl
                       ? "Choose a background below — the preview and result update automatically."
                       : "Choose your background and export format, then remove the background."}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                  <div className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground-secondary">
                     {toKB(file.size)}
                   </div>
                   <button
                     type="button"
                     onClick={resetTool}
-                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition hover:border-blue-400/30 hover:bg-white/10"
+                    className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-blue-400 dark:hover:border-blue-400/30 hover:bg-surface-raised"
                   >
-                    <Trash2 className="h-3.5 w-3.5 text-blue-300" />
+                    <Trash2 className="h-3.5 w-3.5 text-blue-700 dark:text-blue-300" />
                     Start Over
                   </button>
                 </div>
@@ -439,13 +439,13 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
             <div className="flex flex-col gap-4 p-3 sm:p-4 lg:flex-row lg:p-5">
               {/* Left: original preview before processing, cutout result after */}
-              <div className="flex-[1.3] min-w-0 rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
+              <div className="flex-[1.3] min-w-0 rounded-2xl border border-border bg-surface-sunken p-3 sm:p-4">
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-white/85">📄 {file.name}</div>
-                    <div className="mt-0.5 text-xs text-white/40">{file.type || "unknown"}</div>
+                    <div className="truncate text-sm font-medium text-foreground">📄 {file.name}</div>
+                    <div className="mt-0.5 text-xs text-foreground-faint">{file.type || "unknown"}</div>
                   </div>
-                  <div className="rounded-full bg-blue-500/10 px-3 py-1 text-xs text-blue-200">
+                  <div className="rounded-full bg-blue-100 dark:bg-blue-500/10 px-3 py-1 text-xs text-blue-700 dark:text-blue-200">
                     {cutoutUrl ? "Result preview" : "Original preview"}
                   </div>
                 </div>
@@ -454,10 +454,10 @@ export default function BackgroundRemoverClient({ config }: Props) {
                   type="button"
                   onClick={() => outputUrl && handleOpenPreview()}
                   disabled={!outputUrl}
-                  className="overflow-hidden rounded-xl border border-white/10 bg-black/40 text-left transition hover:border-blue-400/30 disabled:cursor-default"
+                  className="overflow-hidden rounded-xl border border-border bg-surface-sunken text-left transition hover:border-blue-400 dark:hover:border-blue-400/30 disabled:cursor-default"
                 >
                   <div
-                    className="relative flex items-center justify-center bg-black/30"
+                    className="relative flex items-center justify-center bg-surface-sunken"
                     style={{
                       aspectRatio: "4 / 3",
                       backgroundImage: outputUrl
@@ -482,7 +482,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
                         draggable={false}
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center text-sm text-white/40">
+                      <div className="flex h-full w-full items-center justify-center text-sm text-foreground-faint">
                         No preview available
                       </div>
                     )}
@@ -490,8 +490,8 @@ export default function BackgroundRemoverClient({ config }: Props) {
                 </button>
 
                 <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Dimensions</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Dimensions</div>
                     <div className="mt-1 font-medium">
                       {cutoutUrl
                         ? `${outputDimensions.width} × ${outputDimensions.height}`
@@ -500,14 +500,14 @@ export default function BackgroundRemoverClient({ config }: Props) {
                         : "—"}
                     </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Size</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Size</div>
                     <div className="mt-1 font-medium">
                       {cutoutUrl && outputBlob ? toKB(outputBlob.size) : toKB(file.size)}
                     </div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Format</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Format</div>
                     <div className="mt-1 font-medium">
                       {cutoutUrl ? getPrettyFormat(outputFormat) : getFileExtensionLabel(file)}
                     </div>
@@ -517,10 +517,10 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
               {/* Right: background + export controls, then the process button */}
               <div className="flex-[1.3] min-w-0 flex flex-col gap-3">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div className="rounded-2xl border border-border bg-surface-sunken p-4">
                   <div className="flex gap-3">
                     <GlassIcon icon={Palette} />
-                    <h3 className="text-sm font-semibold text-white/85">Background</h3>
+                    <h3 className="text-sm font-semibold text-foreground">Background</h3>
                   </div>
 
                   <div className="mt-3 grid grid-cols-2 gap-2">
@@ -545,8 +545,8 @@ export default function BackgroundRemoverClient({ config }: Props) {
                         aria-pressed={backgroundMode === mode}
                         className={`rounded-xl border px-3 py-2.5 text-xs font-medium transition ${
                           backgroundMode === mode
-                            ? "border-blue-400/35 bg-blue-400/10 text-white"
-                            : "border-white/10 bg-white/5 text-zinc-200 hover:bg-white/10"
+                            ? "border-blue-300 dark:border-blue-400/35 bg-blue-100 dark:bg-blue-400/10 text-foreground"
+                            : "border-border bg-card text-foreground hover:bg-surface-raised"
                         }`}
                       >
                         {label}
@@ -564,13 +564,13 @@ export default function BackgroundRemoverClient({ config }: Props) {
                           title={preset.label}
                           className={`h-8 w-8 rounded-full border-2 transition ${
                             backgroundColor.toLowerCase() === preset.value
-                              ? "border-blue-400"
-                              : "border-white/20"
+                              ? "border-blue-300 dark:border-blue-400"
+                              : "border-border-strong"
                           }`}
                           style={{ backgroundColor: preset.value }}
                         />
                       ))}
-                      <label className="flex h-8 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs text-zinc-300">
+                      <label className="flex h-8 items-center gap-2 rounded-full border border-border bg-card px-3 text-xs text-foreground-secondary">
                         <input
                           type="color"
                           value={backgroundColor}
@@ -601,7 +601,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
                       <button
                         type="button"
                         onClick={() => bgImageInputRef.current?.click()}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white transition hover:bg-white/10"
+                        className="rounded-full border border-border bg-card px-3 py-2 text-xs text-foreground transition hover:bg-surface-raised"
                       >
                         {backgroundImageUrl ? "Change image" : "Upload image"}
                       </button>
@@ -609,7 +609,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
                         <img
                           src={backgroundImageUrl}
                           alt="Custom background"
-                          className="h-9 w-9 rounded-lg border border-white/10 object-cover"
+                          className="h-9 w-9 rounded-lg border border-border object-cover"
                         />
                       )}
                     </div>
@@ -617,7 +617,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
                   {backgroundMode === "blur" && (
                     <div className="mt-3 space-y-2">
-                      <div className="flex items-center justify-between text-xs text-white/70">
+                      <div className="flex items-center justify-between text-xs text-foreground-secondary">
                         <span>Blur strength</span>
                         <span>{blurStrength}px</span>
                       </div>
@@ -633,10 +633,10 @@ export default function BackgroundRemoverClient({ config }: Props) {
                   )}
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div className="rounded-2xl border border-border bg-surface-sunken p-4">
                   <div className="flex gap-3">
                     <GlassIcon icon={FileImage} />
-                    <h3 className="text-sm font-semibold text-white/85">Export format</h3>
+                    <h3 className="text-sm font-semibold text-foreground">Export format</h3>
                   </div>
                   <div className="mt-3 grid grid-cols-3 gap-2">
                     {(["png", "webp", "jpeg"] as OutputFormat[]).map((fmt) => (
@@ -647,8 +647,8 @@ export default function BackgroundRemoverClient({ config }: Props) {
                         aria-pressed={outputFormat === fmt}
                         className={`rounded-xl border px-3 py-2.5 text-xs font-medium uppercase transition ${
                           outputFormat === fmt
-                            ? "border-blue-400/35 bg-blue-400/10 text-white"
-                            : "border-white/10 bg-white/5 text-zinc-200 hover:bg-white/10"
+                            ? "border-blue-300 dark:border-blue-400/35 bg-blue-100 dark:bg-blue-400/10 text-foreground"
+                            : "border-border bg-card text-foreground hover:bg-surface-raised"
                         }`}
                       >
                         {fmt}
@@ -656,7 +656,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
                     ))}
                   </div>
                   {outputFormat === "jpeg" && backgroundMode === "transparent" && (
-                    <p className="mt-3 text-xs text-amber-200">
+                    <p className="mt-3 text-xs text-amber-700 dark:text-amber-200">
                       JPEG doesn't support transparency — the exported file will have a white
                       background.
                     </p>
@@ -668,7 +668,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
                     type="button"
                     onClick={handleStartProcessing}
                     disabled={!file}
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-3 text-sm font-semibold text-white transition hover:from-blue-400 hover:to-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-blue-400 hover:to-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <Wand2 className="h-4 w-4" />
                     Remove Background
@@ -676,20 +676,20 @@ export default function BackgroundRemoverClient({ config }: Props) {
                 )}
 
                 {processing && (
-                  <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                    <div className="flex items-center gap-2 text-sm text-white/80">
-                      <Loader2 className="h-4 w-4 animate-spin text-blue-300" />
+                  <div className="rounded-2xl border border-border bg-surface-sunken p-4">
+                    <div className="flex items-center gap-2 text-sm text-foreground">
+                      <Loader2 className="h-4 w-4 animate-spin text-blue-700 dark:text-blue-300" />
                       {modelLoading ? "Loading model…" : "Removing background…"}
                     </div>
                     <div className="mt-3">
                       <ProgressBar value={progress} />
-                      <p className="mt-2 text-xs text-white/50">Processing your image locally...</p>
+                      <p className="mt-2 text-xs text-foreground-faint">Processing your image locally...</p>
                     </div>
                   </div>
                 )}
 
                 {cutoutUrl && !processing && (
-                  <div className="flex items-center gap-2 rounded-xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-200">
+                  <div className="flex items-center gap-2 rounded-xl border border-emerald-300 dark:border-emerald-400/20 bg-emerald-100 dark:bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-700 dark:text-emerald-200">
                     <CheckCircle2 className="h-4 w-4" />
                     Background removed successfully
                   </div>
@@ -701,14 +701,14 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
         {isDone && outputUrl && outputBlob && (
           <section className={premiumShellClass()}>
-            <div className="border-b border-white/10 px-4 py-3 sm:px-5 sm:py-4">
+            <div className="border-b border-border px-4 py-3 sm:px-5 sm:py-4">
               <div className="flex gap-3">
                 <GlassIcon icon={CheckCircle2} />
                 <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight">
                   Your image is ready
                 </h2>
               </div>
-              <p className="mt-1 text-xs text-white/60 sm:text-sm">
+              <p className="mt-1 text-xs text-foreground-secondary sm:text-sm">
                 Preview the result and download it directly.
               </p>
             </div>
@@ -716,7 +716,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
             <div className="grid gap-4 p-3 sm:grid-cols-2 sm:p-4 lg:p-5">
               <button
                 onClick={handleOpenPreview}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-3 text-sm font-semibold text-white transition hover:from-violet-400 hover:to-blue-400"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-violet-400 hover:to-blue-400"
               >
                 <Maximize2 className="h-4 w-4" />
                 Preview Result
@@ -724,7 +724,7 @@ export default function BackgroundRemoverClient({ config }: Props) {
 
               <button
                 onClick={handleOpenDownload}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-white transition hover:from-emerald-400 hover:to-emerald-300"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-emerald-400 hover:to-emerald-300"
               >
                 <Download className="h-4 w-4" />
                 Download Image
@@ -732,18 +732,18 @@ export default function BackgroundRemoverClient({ config }: Props) {
             </div>
 
             <div className="px-3 pb-3 sm:px-4 sm:pb-4 lg:px-5 lg:pb-5">
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
+              <div className="rounded-2xl border border-border bg-surface-sunken p-3 sm:p-4">
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Original</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Original</div>
                     <div className="mt-1 font-medium">{file ? toKB(file.size) : "—"}</div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Output</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Output</div>
                     <div className="mt-1 font-medium">{toKB(outputBlob.size)}</div>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white/75">
-                    <div className="text-[11px] text-white/40">Dimensions</div>
+                  <div className="rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground-secondary">
+                    <div className="text-[11px] text-foreground-faint">Dimensions</div>
                     <div className="mt-1 font-medium">
                       {outputDimensions.width} x {outputDimensions.height}
                     </div>
