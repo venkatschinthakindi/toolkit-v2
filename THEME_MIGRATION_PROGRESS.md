@@ -1099,3 +1099,11 @@ background collapsed to the identical bg-surface-sunken token in both
 branches, leaving a pointless ternary — simplified to a plain
 assignment. Verified: tsc clean, eslint 0 problems, build clean.
 Commit `17ad291`.
+
+## Session 36 — backgroundRemoverClient.tsx migrated (79 occurrences, largest at the time)
+
+Standard mapping + 18-token hue pass. Verified: tsc clean, eslint 5
+pre-existing problems unchanged, zero responsive diff, build clean.
+Rebased cleanly onto a concurrent PDF-client batch (CompressClient,
+ImageToPDFClient, mergePdfClient, splitPdfClient all done by another
+session) with zero conflicts. Commit `20ed2c2`.
