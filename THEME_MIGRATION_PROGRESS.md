@@ -1113,3 +1113,10 @@ session) with zero conflicts. Commit `20ed2c2`.
 Standard mapping + 13-token hue pass. Verified: tsc clean, eslint 3
 pre-existing problems unchanged, zero responsive diff, build clean.
 Commit `7b52d8d`.
+
+## Session 38 — src/app/image/page.tsx migrated (47 occurrences)
+
+Standard mapping + 10 in-content text links (text-blue-300 underline)
+needing the same contrast fix as other bare-blue links found
+elsewhere. Verified: tsc clean, eslint 0 problems, zero responsive
+diff, build clean. Commit `f3900ed`.
