@@ -1120,3 +1120,14 @@ Standard mapping + 10 in-content text links (text-blue-300 underline)
 needing the same contrast fix as other bare-blue links found
 elsewhere. Verified: tsc clean, eslint 0 problems, zero responsive
 diff, build clean. Commit `f3900ed`.
+
+## Session 39 — tiptapEditor.tsx migrated, 2 pre-existing bugs fixed
+
+Was hardcoded light (bg-white/slate-900 text) this whole time — same
+bug category as confirmModal.tsx. Standard mapping fixes the modal's
+appearance. Also found and fixed a genuine CSS bug: `.fhcontent`
+global style hardcoded `color: #fff`, which only "worked" by accident
+against the app's dark background — would have been invisible
+white-on-white in light mode. Changed to `color: var(--foreground)`.
+Verified: tsc clean, eslint 1 pre-existing error unchanged, zero
+responsive diff, build clean. Commit `c508199`.
