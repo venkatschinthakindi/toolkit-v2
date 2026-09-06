@@ -68,7 +68,7 @@ function ToolHero({
   const outputFormat = config.outputFormats?.[0] || "png";
 
   return (
-    <section className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <section className="relative overflow-hidden rounded-[28px] border border-border bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <div className="absolute inset-0">
         <div className="absolute -left-32 top-0 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl" />
         <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
@@ -82,17 +82,17 @@ function ToolHero({
               Private • Browser Based • Secure
             </div>
 
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-white lg:text-6xl">
+            <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground lg:text-6xl">
               Convert Images
-              <span className="block bg-gradient-to-r from-blue-400 via-white to-violet-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-blue-400 via-[var(--foreground)] to-violet-400 bg-clip-text text-transparent">
                 in Seconds
               </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground-secondary">
               Convert{" "}
-              <strong className="text-white">{config.inputFormats.join(", ").toUpperCase()}</strong>{" "}
-              to <strong className="text-white">{outputFormat.toUpperCase()}</strong>. Everything happens
+              <strong className="text-foreground">{config.inputFormats.join(", ").toUpperCase()}</strong>{" "}
+              to <strong className="text-foreground">{outputFormat.toUpperCase()}</strong>. Everything happens
               securely inside your browser. No uploads. No waiting. No registration.
             </p>
 
@@ -103,20 +103,20 @@ function ToolHero({
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-black/20 p-4 backdrop-blur">
-            <div className="text-lg font-semibold text-white">Quick Overview</div>
+          <div className="rounded-3xl border border-border bg-surface-sunken p-4 backdrop-blur">
+            <div className="text-lg font-semibold text-foreground">Quick Overview</div>
 
             <div className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Input</span>
-                <span className="font-medium text-white">{config.inputFormats.join(", ").toUpperCase()}</span>
+                <span className="text-muted-foreground">Input</span>
+                <span className="font-medium text-foreground">{config.inputFormats.join(", ").toUpperCase()}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Output</span>
-                <span className="font-medium text-white">{outputFormat.toUpperCase()}</span>
+                <span className="text-muted-foreground">Output</span>
+                <span className="font-medium text-foreground">{outputFormat.toUpperCase()}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Processing</span>
+                <span className="text-muted-foreground">Processing</span>
                 <span className="text-emerald-300">Local Browser</span>
               </div>
               <div className="flex items-center justify-between">
@@ -255,7 +255,7 @@ export default function ImageConverterClient({ config }: Props) {
   }, [outputUrl, file, config.outputFormats]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-4 text-white sm:px-6 sm:py-3 lg:px-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-4 text-foreground sm:px-6 sm:py-3 lg:px-8">
       <ToolHero config={config} processing={processing} file={file} 
       dropzoneKey={dropzoneKey} handleFiles={handleFiles} validFileTypes={validFileTypes} />
 
@@ -269,11 +269,11 @@ export default function ImageConverterClient({ config }: Props) {
       <section className="mt-8 grid gap-5 xl:grid-cols-[1.4fr_420px]">
         <div className="space-y-6">
           <WorkspaceCard>
-            <header className="border-b border-white/10 px-6 py-3">
+            <header className="border-b border-border px-6 py-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-semibold text-white">Preview</h2>
-                  <p className="mt-1 text-sm text-slate-400">Original image before conversion.</p>
+                  <h2 className="text-xl font-semibold text-foreground">Preview</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">Original image before conversion.</p>
                 </div>
                 <span className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-300">
                   Ready
@@ -297,8 +297,8 @@ export default function ImageConverterClient({ config }: Props) {
                       />
                     )}
             </div>
-            <div className="px-6 py-3 rounded-[24px] m-4 bg-gradient-to-b from-slate-950 to-slate-900">
-              <h3 className="text-lg font-semibold text-white">File Information</h3>
+            <div className="px-6 py-3 rounded-[24px] m-4 bg-surface-sunken">
+              <h3 className="text-lg font-semibold text-foreground">File Information</h3>
               <div className="flex items-center gap-2 py-4">
                 <MetadataGrid>
                     <StatCard
@@ -336,7 +336,7 @@ export default function ImageConverterClient({ config }: Props) {
         </div>
 
         <aside className="space-y-5">
-          <section className="sticky top-12 rounded-[24px] border border-white/10 bg-slate-900/70 p-5 backdrop-blur-xl">
+          <section className="sticky top-12 rounded-[24px] border border-border bg-surface-sunken p-5 backdrop-blur-xl">
             <SectionHeader
               title="Conversion"
               subtitle=""
@@ -345,24 +345,24 @@ export default function ImageConverterClient({ config }: Props) {
 
             <div className="mt-8 space-y-5">
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-2xl bg-slate-950/60 p-4">
-                  <div className="text-sm text-slate-500">Input</div>
-                  <div className="mt-2 font-semibold text-white">
+                <div className="rounded-2xl bg-surface-sunken p-4">
+                  <div className="text-sm text-muted-foreground">Input</div>
+                  <div className="mt-2 font-semibold text-foreground">
                     {config.inputFormats.join(", ").toUpperCase()}
                   </div>
                 </div>
-                <div className="rounded-xl bg-slate-950/60 p-4">
-                  <div className="text-sm text-slate-500">Output</div>
-                  <div className="mt-2 font-semibold text-white">
+                <div className="rounded-xl bg-surface-sunken p-4">
+                  <div className="text-sm text-muted-foreground">Output</div>
+                  <div className="mt-2 font-semibold text-foreground">
                     {config.outputFormats[0].toUpperCase()}
                   </div>
                 </div>
-                <div className="rounded-xl bg-slate-950/60 p-4">
-                  <div className="text-sm text-slate-500">Processing</div>
+                <div className="rounded-xl bg-surface-sunken p-4">
+                  <div className="text-sm text-muted-foreground">Processing</div>
                   <div className="mt-2 font-semibold text-emerald-300">Local Browser</div>
                 </div>
-                <div className="rounded-xl bg-slate-950/60 p-4">
-                  <div className="text-sm text-slate-500">Status</div>
+                <div className="rounded-xl bg-surface-sunken p-4">
+                  <div className="text-sm text-muted-foreground">Status</div>
                   <div className="mt-2 font-semibold text-blue-300">
                     {processing ? "Processing" : file ? "Ready" : "Waiting"}
                   </div>
@@ -378,14 +378,14 @@ export default function ImageConverterClient({ config }: Props) {
                 {processing ? "Converting..." : `Convert to ${config.outputFormats[0].toUpperCase()}`}
               </ToolButton>
 
-              <div className="rounded-[24px] border border-white/10 bg-slate-950/60 p-4">
+              <div className="rounded-[24px] border border-border bg-surface-sunken p-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-2xl bg-blue-500/10 p-3">
                     <ShieldCheck className="h-5 w-5 text-blue-400" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-white">Privacy first</div>
-                    <div className="mt-1 text-sm text-slate-400">No server upload. No account needed.</div>
+                    <div className="text-sm font-medium text-foreground">Privacy first</div>
+                    <div className="mt-1 text-sm text-muted-foreground">No server upload. No account needed.</div>
                   </div>
                 </div>
               </div>
