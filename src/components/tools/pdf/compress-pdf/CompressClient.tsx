@@ -151,16 +151,16 @@ function LevelCard({
       className={`flex h-full flex-col items-start gap-2 rounded-2xl border p-4 text-left transition ${
         active
           ? "border-blue-400/35 bg-blue-400/10"
-          : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10"
+          : "border-border bg-card hover:border-border-strong hover:bg-surface-raised"
       }`}
       onClick={onClick}
       aria-pressed={active}
       type="button"
     >
-      <span className="text-sm font-semibold text-white">
+      <span className="text-sm font-semibold text-foreground">
         {cfg.label} {cfg.icon}
       </span>
-      <span className="text-xs leading-5 text-white/60">{cfg.desc}</span>
+      <span className="text-xs leading-5 text-muted-foreground">{cfg.desc}</span>
       <span className="mt-auto text-xs font-medium text-blue-200">
         ~{cfg.expectedRange} reduction
       </span>
@@ -182,12 +182,12 @@ function SizeComparison({ before, after }: { before: number; after: number }) {
 
   return (
     <div className={premiumShellClass()}>
-      <div className="flex items-start justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
+      <div className="flex items-start justify-between gap-3 border-b border-border px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
         <div className="flex gap-3">
           <GlassIcon icon={TrendingDown} />
           <div>
-            <p className="text-xs uppercase tracking-[0.16em] text-white/45">Compression result</p>
-            <h3 className="mt-1 text-sm font-semibold text-white">File size comparison</h3>
+            <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Compression result</p>
+            <h3 className="mt-1 text-sm font-semibold text-foreground">File size comparison</h3>
           </div>
         </div>
         <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-200">
@@ -196,11 +196,11 @@ function SizeComparison({ before, after }: { before: number; after: number }) {
       </div>
 
       {/* Hero number — the moment that's meant to land */}
-      <div className="border-b border-white/10 px-4 py-6 text-center sm:px-5 md:px-6">
-        <p className="bg-gradient-to-r from-emerald-300 via-white to-blue-300 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl">
+      <div className="border-b border-border px-4 py-6 text-center sm:px-5 md:px-6">
+        <p className="bg-gradient-to-r from-emerald-300 via-[var(--foreground)] to-blue-300 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl">
           {savedPct > 0 ? `${savedPct}%` : "0%"}
         </p>
-        <p className="mt-2 text-sm text-white/60">
+        <p className="mt-2 text-sm text-muted-foreground">
           {savedPct > 0
             ? "smaller than the original — ready to share or store"
             : "Size unchanged — PDF may already be optimized"}
@@ -210,20 +210,20 @@ function SizeComparison({ before, after }: { before: number; after: number }) {
       {/* Two proportional bars so the shrink is visible, not just numeric */}
       <div className="space-y-4 px-4 py-4 sm:px-5 md:px-6">
         <div>
-          <div className="mb-1.5 flex items-center justify-between text-xs text-white/50">
+          <div className="mb-1.5 flex items-center justify-between text-xs text-muted-foreground">
             <span>Original</span>
-            <span className="font-medium text-white/80">{formatBytes(before)}</span>
+            <span className="font-medium text-foreground-secondary">{formatBytes(before)}</span>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-full rounded-full bg-white/30" />
+          <div className="h-3 overflow-hidden rounded-full bg-surface-sunken">
+            <div className="h-full w-full rounded-full bg-foreground/30" />
           </div>
         </div>
         <div>
-          <div className="mb-1.5 flex items-center justify-between text-xs text-white/50">
+          <div className="mb-1.5 flex items-center justify-between text-xs text-muted-foreground">
             <span>Compressed</span>
             <span className="font-medium text-emerald-200">{formatBytes(after)}</span>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-white/10">
+          <div className="h-3 overflow-hidden rounded-full bg-surface-sunken">
             <div
               className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-blue-400 transition-all duration-500"
               style={{ width: `${compressedBarPct}%` }}
@@ -232,7 +232,7 @@ function SizeComparison({ before, after }: { before: number; after: number }) {
         </div>
       </div>
 
-      <p className="px-4 pb-4 text-sm text-white/65 sm:px-5 md:px-6 md:pb-5">
+      <p className="px-4 pb-4 text-sm text-foreground-secondary sm:px-5 md:px-6 md:pb-5">
         {savedPct > 0
           ? `Reduced by ${formatBytes(before - after)} — down from ${formatBytes(before)} to ${formatBytes(after)}.`
           : "Size unchanged — PDF may be text-only or already optimised."}
@@ -378,7 +378,7 @@ export default function CompressClient({ config }: Props) {
   const canBuild = !!file && !isWorking;
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-3 py-3 text-white sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
+    <div className="mx-auto w-full max-w-6xl px-3 py-3 text-foreground sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
       <ToolHero
         config={config}
         processing={isWorking}
@@ -418,7 +418,7 @@ export default function CompressClient({ config }: Props) {
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-3 sm:space-y-4 md:space-y-5">
           <section className={premiumShellClass()} aria-labelledby="levels-heading">
-            <div className="relative flex flex-col flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
+            <div className="relative flex flex-col flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
               <div>
                 <div className="flex flex-col gap-3">
                   <GlassIcon icon={Gauge} />
@@ -426,21 +426,21 @@ export default function CompressClient({ config }: Props) {
                     Compression level
                   </h2>
                 </div>
-                <p className="mt-1 text-xs text-white/60 sm:text-sm">
+                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                   Choose a trade-off between file size and visual fidelity.
                 </p>
               </div>
 
               {file && (
                 <div className="flex flex-col items-center gap-2">
-                  <div className="min-w-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70">
+                  <div className="min-w-0 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-foreground-secondary">
                     <span className="max-w-[160px] truncate align-middle" title={file.name}>
                       {file.name}
                     </span>
-                    <span className="ml-1.5 text-white/40">· {formatBytes(file.size)}</span>
+                    <span className="ml-1.5 text-muted-foreground">· {formatBytes(file.size)}</span>
                   </div>
                   <button
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/10 hover:text-white"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-card text-foreground-secondary transition hover:bg-surface-raised hover:text-foreground"
                     onClick={reset}
                     aria-label="Remove file"
                     type="button"
@@ -469,14 +469,14 @@ export default function CompressClient({ config }: Props) {
             {file && (
             <div className="space-y-4 p-3 sm:p-4 md:p-5">
               {isWorking && (
-                <div className="rounded-2xl border border-white/10 bg-black/10 p-4">
+                <div className="rounded-2xl border border-border bg-surface-sunken p-4">
                   <div className="mb-3 flex items-center justify-between gap-3">
-                    <span className="text-sm text-white/70">
+                    <span className="text-sm text-foreground-secondary">
                       {progress.total > 0 ? `Rendering page ${progress.page} of ${progress.total}…` : "Loading PDF…"}
                     </span>
-                    <span className="text-sm font-medium text-white">{pct}%</span>
+                    <span className="text-sm font-medium text-foreground">{pct}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-2 overflow-hidden rounded-full bg-surface-sunken">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-blue-400 to-violet-400 transition-all"
                       style={{ width: `${pct}%` }}
@@ -531,7 +531,7 @@ export default function CompressClient({ config }: Props) {
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <button
-                      className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm font-semibold text-white transition hover:bg-white/10"
+                      className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-5 py-4 text-sm font-semibold text-foreground transition hover:bg-surface-raised"
                       onClick={reset}
                       type="button"
                     >
@@ -539,7 +539,7 @@ export default function CompressClient({ config }: Props) {
                       Compress another file / Reset all
                     </button>
 
-                    <div className="flex items-center justify-center rounded-2xl border border-white/10 bg-black/10 px-5 py-4 text-sm text-white/70">
+                    <div className="flex items-center justify-center rounded-2xl border border-border bg-surface-sunken px-5 py-4 text-sm text-foreground-secondary">
                       <CircleCheck className="mr-2 h-4 w-4 text-emerald-300" />
                       Ready
                     </div>
@@ -557,7 +557,7 @@ export default function CompressClient({ config }: Props) {
         <div className="space-y-3 sm:space-y-4 md:space-y-5">
           {!isDone && !!file && (
             <section className={premiumShellClass()} aria-labelledby="workflow-heading">
-              <div className="border-b border-white/10 px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
+              <div className="border-b border-border px-4 py-3 sm:px-5 sm:py-3.5 md:px-5 md:py-4">
                 <div className="flex gap-3">
                   <GlassIcon icon={Info} />
                   <h2 id="workflow-heading" className="flex items-center gap-2 text-base font-semibold tracking-tight sm:text-md">
@@ -566,7 +566,7 @@ export default function CompressClient({ config }: Props) {
                 </div>
               </div>
               <div className="p-4 sm:p-5">
-                <p className="text-sm leading-6 text-white/65">
+                <p className="text-sm leading-6 text-foreground-secondary">
                   Each page is re-rendered as a JPEG image — no data leaves your device. Text-heavy PDFs:
                   ~20–40% smaller. Image-heavy PDFs: 50–80% smaller. On <em>Aggressive</em>, text won't be
                   selectable in the output.
