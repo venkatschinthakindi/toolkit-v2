@@ -49,7 +49,7 @@ config: CompressorConfig;
 type ModalVariant = "preview" | "download";
 
 function premiumShellClass() {
-return "relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950";
+return "relative flex flex-col overflow-hidden rounded-[28px] border border-border bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950";
 }
 
 function GlassIcon({
@@ -57,7 +57,7 @@ icon: Icon,
 }: {
 icon: React.ComponentType<{ className?: string }>;
 }) {
-return ( <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/85"> <Icon className="h-4 w-4" /> </span>
+return ( <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-border bg-card text-foreground"> <Icon className="h-4 w-4" /> </span>
 );
 }
 
@@ -434,7 +434,7 @@ setModalVariant("download");
 setShowModal(true);
 };
 
-return ( <div className="mx-auto w-full max-w-6xl px-3 py-3 text-white sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
+return ( <div className="mx-auto w-full max-w-6xl px-3 py-3 text-foreground sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6">
 <ToolHero
 config={config}
 processing={processing}
@@ -488,14 +488,14 @@ color: "blue",
 
   <div className="mt-6 space-y-4 sm:space-y-5">
     {error && (
-      <section className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
+      <section className="rounded-2xl border border-rose-300 dark:border-rose-400/20 bg-rose-100 dark:bg-rose-400/10 px-4 py-3 text-sm text-rose-700 dark:text-rose-100">
         {error}
       </section>
     )}
 
     {isReady && file && (
       <section className={premiumShellClass()}>
-        <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-4">
+        <div className="flex flex-col gap-3 border-b border-border px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-4">
           <div className="min-w-0">
             <div className="flex gap-3">
               <GlassIcon icon={Eye} />
@@ -504,41 +504,41 @@ color: "blue",
               </h2>
             </div>
 
-            <p className="mt-1 text-xs text-white/60 sm:text-sm">
+            <p className="mt-1 text-xs text-foreground-secondary sm:text-sm">
               Preview the selected image before compressing. The optimized
               output will open in a modal after processing.
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+            <div className="rounded-full border border-border bg-card px-3 py-1 text-xs text-foreground-secondary">
               {toKB(file.size)}
             </div>
 
             <button
               type="button"
               onClick={resetTool}
-              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition hover:border-blue-400/30 hover:bg-white/10"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition hover:border-blue-400 dark:hover:border-blue-400/30 hover:bg-surface-raised"
             >
-              <Trash2 className="h-3.5 w-3.5 text-blue-300" />
+              <Trash2 className="h-3.5 w-3.5 text-blue-700 dark:text-blue-300" />
               Start Over
             </button>
           </div>
         </div>
 
         <div className="grid gap-4 p-3 sm:p-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.9fr)] lg:p-5">
-          <div className="rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
+          <div className="rounded-2xl border border-border bg-surface-sunken p-3 sm:p-4">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div className="min-w-0">
-                <div className="truncate text-sm font-medium text-white/85">
+                <div className="truncate text-sm font-medium text-foreground">
                   📄 {file.name}
                 </div>
-                <div className="mt-0.5 text-xs text-white/40">
+                <div className="mt-0.5 text-xs text-foreground-faint">
                   {file.type || "unknown"}
                 </div>
               </div>
 
-              <div className="rounded-full bg-blue-500/10 px-3 py-1 text-xs text-blue-200">
+              <div className="rounded-full bg-blue-100 dark:bg-blue-500/10 px-3 py-1 text-xs text-blue-700 dark:text-blue-200">
                 Preview
               </div>
             </div>
@@ -546,10 +546,10 @@ color: "blue",
             <button
               type="button"
               onClick={() => previewUrl && handleOpenPreview()}
-              className="overflow-hidden rounded-xl border border-white/10 bg-black/40 text-left transition hover:border-blue-400/30"
+              className="overflow-hidden rounded-xl border border-border bg-surface-sunken text-left transition hover:border-blue-400 dark:hover:border-blue-400/30"
             >
               <div
-                className="relative flex items-center justify-center bg-black/30"
+                className="relative flex items-center justify-center bg-surface-sunken"
                 style={{ aspectRatio: "4 / 3" }}
               >
                 {previewUrl ? (
@@ -560,7 +560,7 @@ color: "blue",
                     draggable={false}
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center text-sm text-white/40">
+                  <div className="flex h-full w-full items-center justify-center text-sm text-foreground-faint">
                     No preview available
                   </div>
                 )}
@@ -591,15 +591,15 @@ color: "blue",
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
+            <div className="rounded-2xl border border-border bg-surface-sunken p-4">
               <div className="flex gap-3">
                 <GlassIcon icon={Gauge} />
-                <h3 className="text-sm font-semibold text-white/85">
+                <h3 className="text-sm font-semibold text-foreground">
                   Compression
                 </h3>
               </div>
 
-              <p className="mt-1 text-xs leading-5 text-white/55">
+              <p className="mt-1 text-xs leading-5 text-foreground-faint">
                 Compress locally in your browser. Use the controls below
                 to balance quality and file size.
               </p>
@@ -629,17 +629,17 @@ color: "blue",
                 />
               )}
 
-              <div className="mt-4 rounded-2xl border border-white/10 bg-black/10 p-4">
+              <div className="mt-4 rounded-2xl border border-border bg-card p-4">
                 <div className="mb-3 flex items-center gap-3">
                   <GlassIcon icon={Ratio} />
-                  <h4 className="text-sm font-semibold text-white/85">
+                  <h4 className="text-sm font-semibold text-foreground">
                     Resize Image
                   </h4>
                 </div>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-xs text-white/60">
+                    <label className="mb-1 block text-xs text-foreground-secondary">
                       Width
                     </label>
 
@@ -653,12 +653,12 @@ color: "blue",
                           Number(e.target.value) || 1
                         )
                       }
-                      className="w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white outline-none focus:border-blue-400/40"
+                      className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground outline-none focus:border-blue-300 dark:border-blue-400/40"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-xs text-white/60">
+                    <label className="mb-1 block text-xs text-foreground-secondary">
                       Height
                     </label>
 
@@ -672,19 +672,19 @@ color: "blue",
                           Number(e.target.value) || 1
                         )
                       }
-                      className="w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white outline-none focus:border-blue-400/40"
+                      className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-foreground outline-none focus:border-blue-300 dark:border-blue-400/40"
                     />
                   </div>
                 </div>
 
-                <label className="mt-3 flex items-center gap-2 text-xs text-white/70">
+                <label className="mt-3 flex items-center gap-2 text-xs text-foreground-secondary">
                   <input
                     type="checkbox"
                     checked={lockAspectRatio}
                     onChange={(e) =>
                       setLockAspectRatio(e.target.checked)
                     }
-                    className="h-4 w-4 rounded border-white/20 bg-transparent accent-blue-400"
+                    className="h-4 w-4 rounded border-border-strong bg-transparent accent-blue-400"
                   />
                   Lock Aspect Ratio
                 </label>
@@ -695,16 +695,16 @@ color: "blue",
               type="button"
               onClick={handleCompress}
               disabled={processing || !file}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-3 text-sm font-semibold text-white transition hover:from-blue-400 hover:to-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-violet-500 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-blue-400 hover:to-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Gauge className="h-4 w-4" />
               {processing ? "Compressing..." : "Compress Image"}
             </button>
 
             {processing && (
-              <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+              <div className="rounded-2xl border border-border bg-surface-sunken p-3">
                 <ProgressBar value={progress} />
-                <p className="mt-2 text-xs text-white/50">
+                <p className="mt-2 text-xs text-foreground-faint">
                   Processing your image locally...
                 </p>
               </div>
@@ -716,7 +716,7 @@ color: "blue",
 
     {isDone && outputUrl && outputBlob && (
       <section className={premiumShellClass()}>
-        <div className="border-b border-white/10 px-4 py-3 sm:px-5 sm:py-4">
+        <div className="border-b border-border px-4 py-3 sm:px-5 sm:py-4">
           <div className="flex gap-3">
             <GlassIcon icon={CheckCircle2} />
             <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight">
@@ -724,7 +724,7 @@ color: "blue",
             </h2>
           </div>
 
-          <p className="mt-1 text-xs text-white/60 sm:text-sm">
+          <p className="mt-1 text-xs text-foreground-secondary sm:text-sm">
             Preview the compressed result and download it directly.
           </p>
         </div>
@@ -733,7 +733,7 @@ color: "blue",
           <button
             type="button"
             onClick={handleOpenPreview}
-            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-3 text-sm font-semibold text-white transition hover:from-violet-400 hover:to-blue-400"
+            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-violet-400 hover:to-blue-400"
           >
             <Maximize2 className="h-4 w-4" />
             Preview Result
@@ -742,7 +742,7 @@ color: "blue",
           <button
             type="button"
             onClick={handleOpenDownload}
-            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-white transition hover:from-emerald-400 hover:to-emerald-300"
+            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-emerald-400 hover:to-emerald-300"
           >
             <Download className="h-4 w-4" />
             Download Image
@@ -751,7 +751,7 @@ color: "blue",
           <button
             type="button"
             onClick={resetTool}
-            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-emerald-700 px-4 py-3 text-sm font-semibold text-white transition hover:from-emerald-400 hover:to-emerald-300"
+            className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 to-emerald-700 px-4 py-3 text-sm font-semibold text-foreground transition hover:from-emerald-400 hover:to-emerald-300"
           >
             <Trash2 className="h-4 w-4" />
             Start Over
@@ -759,13 +759,13 @@ color: "blue",
         </div>
 
         <div className="px-3 pb-3 sm:px-4 sm:pb-4 lg:px-5 lg:pb-5">
-          <div className="rounded-2xl border border-white/10 bg-black/20 p-3 sm:p-4">
+          <div className="rounded-2xl border border-border bg-surface-sunken p-3 sm:p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-white/85">
+              <h3 className="text-sm font-semibold text-foreground">
                 Compression Summary
               </h3>
 
-              <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-200">
+              <span className="rounded-full border border-emerald-300 dark:border-emerald-400/20 bg-emerald-100 dark:bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-200">
                 {getPrettyFormat(outputFormat)}
               </span>
             </div>
