@@ -28,37 +28,37 @@ function EditorShell({
   const [linkUrl, setLinkUrl] = useState("");
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-      <div className="flex h-[75vh] w-[75vw] max-w-[1100px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-        <div className="flex items-center justify-between border-b border-slate-200 bg-indigo-900/40 px-6 py-4">
-          <div className="text-sm font-semibold text-slate-900">Edit content</div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-overlay p-4">
+      <div className="flex h-[75vh] w-[75vw] max-w-[1100px] flex-col overflow-hidden rounded-2xl bg-popover shadow-2xl">
+        <div className="flex items-center justify-between border-b border-border bg-indigo-900/40 px-6 py-4">
+          <div className="text-sm font-semibold text-foreground">Edit content</div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md bg-slate-100 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-200"
+            className="rounded-md bg-surface-sunken px-4 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-raised"
           >
             <X size={28} />
           </button>
         </div>
 
-        <div className="border-b border-slate-200 bg-indigo-900/40 px-6 py-4">
+        <div className="border-b border-border bg-indigo-900/40 px-6 py-4">
           <div className="flex flex-wrap gap-2">
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().toggleBold().run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().toggleBold().run()}>
               Bold
             </button>
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().toggleItalic().run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().toggleItalic().run()}>
               Italic
             </button>
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().toggleUnderline().run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().toggleUnderline().run()}>
               Underline
             </button>
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().setTextAlign("left").run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().setTextAlign("left").run()}>
               Left
             </button>
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().setTextAlign("center").run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().setTextAlign("center").run()}>
               Center
             </button>
-            <button type="button" className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100" onClick={() => editor.chain().focus().setTextAlign("right").run()}>
+            <button type="button" className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken" onClick={() => editor.chain().focus().setTextAlign("right").run()}>
               Right
             </button>
 
@@ -68,11 +68,11 @@ function EditorShell({
                 value={linkUrl}
                 onChange={(e) => setLinkUrl(e.target.value)}
                 placeholder="Enter link URL"
-                className="w-56 rounded-md border border-slate-300 px-3 py-2 text-xs text-slate-700 outline-none"
+                className="w-56 rounded-md border border-border px-3 py-2 text-xs text-foreground-secondary outline-none"
               />
               <button
                 type="button"
-                className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100"
+                className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken"
                 onClick={() => {
                   if (!linkUrl.trim()) return;
                   editor.chain().focus().extendMarkRange("link").setLink({ href: linkUrl.trim() }).run();
@@ -102,7 +102,7 @@ function EditorShell({
 
             <button
               type="button"
-              className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100"
+              className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken"
               onClick={() => document.getElementById("image-upload")?.click()}
             >
               Image
@@ -110,14 +110,14 @@ function EditorShell({
 
             <input
               type="color"
-              className="h-9 w-12 cursor-pointer rounded-md border border-slate-300 p-1"
+              className="h-9 w-12 cursor-pointer rounded-md border border-border p-1"
               onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
               title="Text color"
             />
 
             <button
               type="button"
-              className="rounded-md border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100"
+              className="rounded-md border border-border px-3 py-2 text-xs font-medium text-foreground-secondary hover:bg-surface-sunken"
               onClick={() => editor.chain().focus().unsetColor().run()}
             >
               Clear Color
@@ -125,8 +125,8 @@ function EditorShell({
           </div>
         </div>
 
-        <div className="flex-1 min-h-0 bg-slate-100 p-6">
-          <div className="h-full min-h-0 overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-sm">
+        <div className="flex-1 min-h-0 bg-surface-sunken p-6">
+          <div className="h-full min-h-0 overflow-hidden rounded-2xl border-2 border-border bg-popover shadow-sm">
             <EditorContent editor={editor} className="h-full" />
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function TiptapEditor({
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: "prose prose-slate max-w-none w-full px-6 py-6 text-base leading-8 text-slate-900 outline-none focus:outline-none whitespace-pre-wrap break-words",
+        class: "prose prose-slate max-w-none w-full px-6 py-6 text-base leading-8 text-foreground outline-none focus:outline-none whitespace-pre-wrap break-words",
       },
     },
     onUpdate: ({ editor }) => {
@@ -178,7 +178,7 @@ export default function TiptapEditor({
 
   if (!editor) {
     return (
-      <div className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-500">
+      <div className="rounded-xl border border-border bg-popover px-4 py-3 text-sm text-foreground-faint">
         Loading editor...
       </div>
     );
@@ -210,22 +210,22 @@ export default function TiptapEditor({
           white-space: pre-wrap;
           word-break: break-word;
           padding: 1rem 1.5rem;
-          color: #fff;
+          color: var(--foreground);
           }
       `}</style>
 
       <div
-        className="cursor-text rounded-xl border border-slate-300 p-2 shadow-sm transition hover:border-slate-400"
+        className="cursor-text rounded-xl border border-border p-2 shadow-sm transition hover:border-border-strong"
         onClick={() => setOpen(true)}
       >
-        <div className="min-h-[80px] max-h-[120px] overflow-hidden text-slate-900">
+        <div className="min-h-[80px] max-h-[120px] overflow-hidden text-foreground">
           {html ? (
             <div
               className="fhcontent prose prose-slate max-w-none max-h-[80px] overflow-y-auto"
               dangerouslySetInnerHTML={{ __html: html }}
             />
           ) : (
-            <div className="text-white">Click to edit content</div>
+            <div className="text-foreground-faint">Click to edit content</div>
           )}
         </div>
       </div>
