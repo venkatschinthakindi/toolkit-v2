@@ -213,7 +213,7 @@ export default function ImageToPDFClient({ config }: Props) {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-4 text-white sm:px-6 sm:py-3 lg:px-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-4 text-foreground sm:px-6 sm:py-3 lg:px-8">
       <ToolHero
         config={config}
         processing={processing}
@@ -227,7 +227,7 @@ export default function ImageToPDFClient({ config }: Props) {
         description={(
             <>
               Drop in your photos, arrange them in the order you want, and export a clean{" "}
-              <strong className="text-white">PDF</strong>. Everything happens securely inside your
+              <strong className="text-foreground">PDF</strong>. Everything happens securely inside your
               browser. No uploads. No waiting. No registration.
             </>
           )
@@ -256,11 +256,11 @@ export default function ImageToPDFClient({ config }: Props) {
           <section className="grid gap-5 xl:grid-cols-[1.4fr_420px]">
             {/* ---------------- arrange pages ---------------- */}
             <div className="space-y-6">
-              <div className="rounded-[24px] border border-white/10 bg-slate-900/70 backdrop-blur-xl">
-                <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-6 py-3">
+              <div className="rounded-[24px] border border-border bg-surface-sunken backdrop-blur-xl">
+                <header className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-3">
                   <div>
-                    <h2 className="text-xl font-semibold text-white">Arrange pages</h2>
-                    <p className="mt-1 text-sm text-slate-400">
+                    <h2 className="text-xl font-semibold text-foreground">Arrange pages</h2>
+                    <p className="mt-1 text-sm text-muted-foreground">
                       Drag to reorder — this is the order pages come out in.
                     </p>
                   </div>
@@ -268,7 +268,7 @@ export default function ImageToPDFClient({ config }: Props) {
                     <button
                       type="button"
                       onClick={resetAll}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 transition hover:border-blue-400/30 hover:bg-white/10"
+                      className="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground-secondary transition hover:border-blue-400/30 hover:bg-surface-raised"
                     >
                       Start Over
                     </button>
@@ -293,7 +293,7 @@ export default function ImageToPDFClient({ config }: Props) {
                                   className={`group relative center overflow-hidden rounded-2xl border transition ${
                                     dragSnapshot.isDragging
                                       ? "border-blue-400/50 shadow-lg shadow-blue-500/10"
-                                      : "border-white/10 hover:border-blue-400/30"
+                                      : "border-border hover:border-blue-400/30"
                                   }`}
                                   style={{ aspectRatio: "3 / 4", ...dragProvided.draggableProps.style }}
                                 >
@@ -339,36 +339,36 @@ export default function ImageToPDFClient({ config }: Props) {
 
             {/* ---------------- page setup (sticky sidebar) ---------------- */}
             <aside className="space-y-5">
-              <section className="sticky top-12 rounded-[24px] border border-white/10 bg-slate-900/70 p-5 backdrop-blur-xl">
+              <section className="sticky top-12 rounded-[24px] border border-border bg-surface-sunken p-5 backdrop-blur-xl">
                 <SectionHeader title="Page setup" subtitle="" icon={<Wand2 className="h-5 w-5" />} />
 
                 <div className="mt-8 space-y-5">
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl bg-slate-950/60 p-4">
-                      <div className="text-sm text-slate-500">Images</div>
-                      <div className="mt-2 font-semibold text-white">{images.length}</div>
+                    <div className="rounded-2xl bg-surface-sunken p-4">
+                      <div className="text-sm text-muted-foreground">Images</div>
+                      <div className="mt-2 font-semibold text-foreground">{images.length}</div>
                     </div>
-                    <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="text-sm text-slate-500">Total size</div>
-                      <div className="mt-2 font-semibold text-white">{formatBytes(totalSize)}</div>
+                    <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="text-sm text-muted-foreground">Total size</div>
+                      <div className="mt-2 font-semibold text-foreground">{formatBytes(totalSize)}</div>
                     </div>
 
-                    <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="mb-2 text-sm text-slate-500">Page size</div>
+                    <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="mb-2 text-sm text-muted-foreground">Page size</div>
                       <CustomSelect value={pageSize} callBackTrigger={(v)=>{
                         setPageSize(v as PageSize);
                       }} options={pageOptions} />
                     </div>
 
-                    <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="mb-2 text-sm text-slate-500">Orientation</div>
+                    <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="mb-2 text-sm text-muted-foreground">Orientation</div>
                       <CustomSelect value={orientation} callBackTrigger={(v)=>{
                         setOrientation(v as Orientation);
                       }} options={orientationOptions} />
                     </div>
 
-                    <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="mb-2 text-sm text-slate-500">Image fit</div>
+                    <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="mb-2 text-sm text-muted-foreground">Image fit</div>
                       <CustomSelect value={fitMode} callBackTrigger={(v)=>{
                         setFitMode(v as any);
                       }} options={fitOptions} />
@@ -382,12 +382,12 @@ export default function ImageToPDFClient({ config }: Props) {
                       max={64}
                       onChange={setMargin}
                     />
-                    {/* <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="text-sm text-slate-500">Processing</div>
+                    {/* <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="text-sm text-muted-foreground">Processing</div>
                       <div className="mt-2 font-semibold text-emerald-300">Local Browser</div>
                     </div>
-                    <div className="rounded-xl bg-slate-950/60 p-4">
-                      <div className="text-sm text-slate-500">Status</div>
+                    <div className="rounded-xl bg-surface-sunken p-4">
+                      <div className="text-sm text-muted-foreground">Status</div>
                       <div className="mt-2 font-semibold text-blue-300">
                         {processing ? "Building" : "Ready"}
                       </div>
@@ -400,14 +400,14 @@ export default function ImageToPDFClient({ config }: Props) {
                     {processing ? "Building PDF..." : isDone ? "Regenerate PDF" : "Generate PDF"}
                   </ToolButton>
 
-                  <div className="rounded-[24px] border border-white/10 bg-slate-950/60 p-4">
+                  <div className="rounded-[24px] border border-border bg-surface-sunken p-4">
                     <div className="flex items-center gap-3">
                       <div className="rounded-2xl bg-blue-500/10 p-3">
                         <ShieldCheck className="h-5 w-5 text-blue-400" />
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">Privacy first</div>
-                        <div className="mt-1 text-sm text-slate-400">No server upload. No account needed.</div>
+                        <div className="text-sm font-medium text-foreground">Privacy first</div>
+                        <div className="mt-1 text-sm text-muted-foreground">No server upload. No account needed.</div>
                       </div>
                     </div>
                   </div>
